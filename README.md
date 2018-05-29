@@ -14,9 +14,11 @@ Going through the steps in the tutorial.
 
  1) Go through the tutorial to launch a Neptune Cluster
 
- 2) The default wizard doesn't create a Security Group that allows access to the DB server.
+ 2) The default wizard doesn't create a Security Group that allows access to the DB server. Needed to create a new security group that allows access on port 8182 and applied it to the cluster. Note that the default option is to apply it during the next maintainence window, which could potentially be a few days off, or you can just jam it now (guess which I chose?).
 
  3) Setting up an EC2 Instance
+
+Currently unable to connect to my Neptune DB... :/
 
 
 
