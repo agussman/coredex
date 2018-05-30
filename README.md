@@ -20,7 +20,13 @@ Going through the steps in the tutorial.
 
 Currently unable to connect to my Neptune DB... :/
 
+$ curl nep-test001.cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182
+{"requestId":"0cb1d791-4016-6608-a167-8debd09a72be","code":"AccessDeniedException","detailedMessage":"Access Denied"}
 
+$ curl 172.30.2.226:8182
+{"requestId":"44b1d791-20b3-1ff9-43b7-60a48b16bf3e","code":"BadRequestException","detailedMessage":"Bad request."}
+
+Possibly the issue was having IAM manage my RDS credentials?
 
 # References
 
