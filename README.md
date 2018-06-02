@@ -70,9 +70,9 @@ $ curl -X POST -d '{"gremlin":"g.V().limit(1)"}' http://neptest2.cluster-cvinl5e
 
 We can use the REST endpoint to insert data. For convienence we can put the Gremlin query in its own .json file and tell `curl` to read the data from there:
 ```
-$ cat addVerticies.json
+$ cat addVertex.json
 {
-  "gremlin": "g.addV('person').property('name', 'justin')"
+  "gremlin": "g.addV('PERSON').property(id, '1').property('name', 'Alfred')"
 }
 $ curl -X POST -d @addVerticies.json http://neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182/gremlin | ppjson
 ```
