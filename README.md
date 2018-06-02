@@ -66,7 +66,7 @@ $ curl -X POST -d '{"gremlin":"g.V().limit(1)"}' http://neptest2.cluster-cvinl5e
 }
 ```
 
-# Inserting some Data
+# Inserting Data
 
 We can use the REST endpoint to insert data. For convienence we can put the Gremlin query in its own .json file and tell `curl` to read the data from there:
 ```
@@ -77,6 +77,51 @@ $ cat addVertex.json
 $ curl -X POST -d @addVerticies.json http://neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182/gremlin | ppjson
 ```
 
+The above will create a single vertex (or node) which we can view by rerunning our earlier query.
+
+It's possible to issue multiple gremlin commands in a single query. We can end the individual commands with `.next()` and separate them with a ' ' or a ';'.
+```
+$ cat addVertexAndEdge.json
+{
+  "gremlin": "g.addV('PERSON').property(id, '2').property('name', 'Betty').next() g.addE('MANAGES').from(g.V('2')).to(g.V('1')).property('dateStart', datetime('2018-06-01T00:00:00'))"
+}
+$ curl -X POST -d @addVertexAndEdge.json http://neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182/gremlin | ppjson
+```
+
+Note that default cardinality on Verticies is different than on Edges. By default, Vertex properties have 'Set' cardinality, which (somewhat confusingly) means you can have multiples of the same property. For example:
+```
+g.V('1').property('favorite', 'apple')
+g.V('1').property('favorite', 'pear')
+g.V('1').property('favorite', 'banana')
+```
+will give you a vertex with three `favorite` properties:
+```
+gremlin> g.V('1').properties()
+==>vp[name->Alfred]
+==>vp[favorite->pear]
+==>vp[favorite->banana]
+==>vp[favorite->apple]
+```
+
+Whereas by default Edges will always update a property (aka 'single' cardinality):
+```
+g.V().outE().property('score', '42')
+g.V().outE().property('score', '12')
+g.V().outE().property('score', '88')
+g.V().outE().properties()
+==>p[dateStart->Fri Jun 01 00:00:...]
+==>p[score->88]
+```
+
+In fact, edge properties will always have 'single' cardinality, you can't make an edge property have 'set' cardinality (you have to create more edges).
+
+However, you can make a Vertex property have 'single' cardinality by passing it in as a keyword:
+```
+g.V('1').property(single, 'favorite', 'kiwi')
+g.V('1').properties()
+==>vp[name->Alfred]
+==>vp[favorite->kiwi]
+```
 
 # Troubleshooting
 
@@ -98,9 +143,7 @@ $ curl 172.30.2.226:8182
 I don't know what this means (yet).
 
 
-
-
-
 # References
 
  * [Connecting to Neptune with the Gremlin Console](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-console.html)
+ * [Neptune Gremlin Implementation Differences, plus info on Cardinality ](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-differences.html)
