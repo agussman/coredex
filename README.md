@@ -17,7 +17,21 @@ Going through the steps in the tutorial.
  2) The default wizard doesn't create a Security Group that allows access to the DB server. Needed to create a new security group that allows access on port 8182 and applied it to the cluster. Note that the default option is to apply it during the next maintainence window, which could potentially be a few days off, or you can just jam it now (guess which I chose?).
 
  3) Setting up an EC2 Instance
+```
+$ sudo yum install -y httpd
+$ sudo service httpd start
+$ sudo chkconfig httpd on
+$ sudo groupadd www
+$ sudo usermod -a -G www ec2-user
+log out, log back on
+$ sudo chown -R root:www /var/www
 
+
+
+
+$ sudo yum install git
+$ git clone https://github.com/bricaud/graphexp.git
+```
  4) Test connecting to the Graph
 
 Get the "Cluster endpoint" URL from the "Clusters" page. It will look something like `neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com`.
@@ -113,15 +127,36 @@ g.V().outE().properties()
 ==>p[score->88]
 ```
 
-In fact, edge properties will always have 'single' cardinality, you can't make an edge property have 'set' cardinality (you have to create more edges).
+In fact, edge properties always have 'single' cardinality; you can't make an edge property have 'set' cardinality (you have to create more edges).
 
-However, you can make a Vertex property have 'single' cardinality by passing it in as a keyword:
+However, you can make a Vertex property have 'single' cardinality by passing it `single` as a parameter:
 ```
 g.V('1').property(single, 'favorite', 'kiwi')
 g.V('1').properties()
 ==>vp[name->Alfred]
 ==>vp[favorite->kiwi]
 ```
+
+# Visualizing AWS Neptune Graphs
+
+We can view and explore our graph using [Graphexp](https://github.com/bricaud/graphexp).
+
+If you didn't install Apache earlier, go back and install that or the web server of your choice.
+
+Clone the Graphexp checkout into the `/var/www/html` directory. Note that in a production environment you wouldn't want to do something like this, but I"m assuming you've locked down your security group so that only trusted parties have access to `:80` on your instance.
+
+```
+[ec2-user@ip-172-30-0-247 www]$ git clone https://github.com/bricaud/graphexp.git html
+```
+
+In order to get Graphexp to work with AWS Neptune, edit `scripts/graphConf.js` and set `SINGLE_COMMANDS_AND_NO_VARS = true`.
+
+Using an ssh tunnel:
+```
+$ ssh -vv -i ~/.ssh/your_aws.pem -L 8182:neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182 ec2-user@<publicip>
+```
+
+
 
 # Troubleshooting
 
@@ -147,3 +182,4 @@ I don't know what this means (yet).
 
  * [Connecting to Neptune with the Gremlin Console](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-console.html)
  * [Neptune Gremlin Implementation Differences, plus info on Cardinality ](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-differences.html)
+ * [Installing Apache Web Server on AWS Linux 2](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html)
