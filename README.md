@@ -151,11 +151,18 @@ Clone the Graphexp checkout into the `/var/www/html` directory. Note that in a p
 
 In order to get Graphexp to work with AWS Neptune, edit `scripts/graphConf.js` and set `SINGLE_COMMANDS_AND_NO_VARS = true`.
 
-Using an ssh tunnel:
+We can now view Graphexp's web interface by connecting to our AMI instance. However, there's a slight wrinkle in that we still need to query the AWS Neptune backend for data and our _web browser_ will be sending those requests. This is an issue because only machines in the same VPC can connect to the Neptune cluster endpoint.
+
+There are a couple of ways to address this. A simple hack is to forword `localhost:8182` to the Neptune cluster endpoint over our ssh connection to our AMI. To do that, we (re)launch an ssh session with the `-L` option to create an ssh tunnel:
 ```
 $ ssh -vv -i ~/.ssh/your_aws.pem -L 8182:neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182 ec2-user@<publicip>
 ```
 
+Now we can view Graphexp by connecting to our AWS Instance's public IP (provided you modified the Security Group to allow connecitons from your IP on port 80).
+
+Change 'Protocol' to 'REST' and click 'Get graph info'. If the box is checked, you'll see a summary of your graph.
+
+In the search interface at the top, type 'PERSON' in the 'Node label' box and click 'Search'. You should see your nodes come back, and the relationships between them.
 
 
 # Troubleshooting
