@@ -10,27 +10,24 @@ Following instructions here: https://docs.aws.amazon.com/neptune/latest/userguid
 
 # Setting up Neptune
 
-Going through the steps in the tutorial.
+We're going to launch a Neptune Cluster and a small EC2 instance to connect to the cluster and host a lightweight web interface for exploring graph data.
 
- 1) Go through the tutorial to launch a Neptune Cluster
+ 1) We start by going through the tutorial to [launch a Neptune Cluster](https://docs.aws.amazon.com/neptune/latest/userguide/get-started-CreateInstance-Console.html). The wizard will create a VPC and Subnets for you, if you don't already have them.
 
  2) The default wizard doesn't create a Security Group that allows access to the DB server. Needed to create a new security group that allows access on port 8182 and applied it to the cluster. Note that the default option is to apply it during the next maintainence window, which could potentially be a few days off, or you can just jam it now (guess which I chose?).
 
- 3) Setting up an EC2 Instance
+ 3) Next I launched a `t2.micro` instance. Once it was running, I ssh'd in and installed Git and Apache (most of these steps are detailed [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html):
 ```
 $ sudo yum install -y httpd
 $ sudo service httpd start
 $ sudo chkconfig httpd on
 $ sudo groupadd www
 $ sudo usermod -a -G www ec2-user
+```
 log out, log back on
+```
 $ sudo chown -R root:www /var/www
-
-
-
-
 $ sudo yum install git
-$ git clone https://github.com/bricaud/graphexp.git
 ```
  4) Test connecting to the Graph
 
@@ -80,7 +77,7 @@ $ curl -X POST -d '{"gremlin":"g.V().limit(1)"}' http://neptest2.cluster-cvinl5e
 }
 ```
 
-# Inserting Data
+# Inserting Data via the REST endpoint with curl
 
 We can use the REST endpoint to insert data. For convienence we can put the Gremlin query in its own .json file and tell `curl` to read the data from there:
 ```
@@ -100,6 +97,25 @@ $ cat addVertexAndEdge.json
   "gremlin": "g.addV('PERSON').property(id, '2').property('name', 'Betty').next() g.addE('MANAGES').from(g.V('2')).to(g.V('1')).property('dateStart', datetime('2018-06-01T00:00:00'))"
 }
 $ curl -X POST -d @addVertexAndEdge.json http://neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182/gremlin | ppjson
+```
+
+# Inserting Data via the Gremlin Console
+
+Installation instructions can be found here: [Getting Started with Neptune (Gremlin Console)](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-console.html).
+
+Launch the console with:
+```
+$ bin/gremlin.sh
+```
+
+Connect to the Neptune DB instance:
+```
+gremlin> :remote connect tinkerpop.server conf/neptune-remote.yaml
+```
+
+Swith to remote mode:
+```
+gremlin> :remote console
 ```
 
 Note that default cardinality on Verticies is different than on Edges. By default, Vertex properties have 'Set' cardinality, which (somewhat confusingly) means you can have multiples of the same property. For example:
@@ -187,6 +203,8 @@ I don't know what this means (yet).
 
 # References
 
+ * [Launching a Neptune DB Cluster](https://docs.aws.amazon.com/neptune/latest/userguide/get-started-CreateInstance-Console.html)
+ * [EC2 Web Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html)
  * [Connecting to Neptune with the Gremlin Console](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-console.html)
  * [Neptune Gremlin Implementation Differences, plus info on Cardinality ](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-differences.html)
  * [Installing Apache Web Server on AWS Linux 2](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html)
