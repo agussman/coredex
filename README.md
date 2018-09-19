@@ -8,6 +8,16 @@ for tool and software development.
 
 Following instructions here: https://docs.aws.amazon.com/neptune/latest/userguide/quickstart.html
 
+# Setting up Neptune using the CloudFormation Stack wizard
+
+ Before beginning, make sure you've created an existing EC2 ssh key (`.pem`).
+
+ 1) No changes on Select Template, hit Next
+ 2) On Specify Details under Parameters, change *DbInstanceType* to `db.r4.large`, *EC2ClientInstanceType* to `t2.micro`. Select your `.pem` for *EC2SSHKeyPairName*. 
+ 3) Options, no change
+ 4) Review and Create
+ 5) Wait. This seems like it takes way longer than it should. Easy 10 minutes.
+
 # Setting up Neptune
 
 We're going to launch a Neptune Cluster and a small EC2 instance to connect to the cluster and host a lightweight web interface for exploring graph data.
