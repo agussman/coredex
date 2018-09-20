@@ -18,6 +18,10 @@ Following instructions here: https://docs.aws.amazon.com/neptune/latest/userguid
  4) Review and Create
  5) Wait. This seems like it takes way longer than it should. Easy 10 minutes.
 
+Once it completes, you'll have a `t2.micro` instance you can ssh into and from there you can access the Neptune instance gremlin endpoint on port 8182. It will also create a new VPC along with three subnets (one for each Availability Zone in us-east).
+
+Something to be aware of is that the default Security Group settings allow port 8182 access to the bastion host.
+
 # Setting up Neptune
 
 We're going to launch a Neptune Cluster and a small EC2 instance to connect to the cluster and host a lightweight web interface for exploring graph data.
