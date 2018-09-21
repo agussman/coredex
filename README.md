@@ -44,7 +44,8 @@ log out, log back on
 $ sudo chown -R root:www /var/www
 $ sudo yum install git
 ```
- 4) Test connecting to the Graph
+
+# Neptune REST API
 
 Get the "Cluster endpoint" URL from the "Clusters" page. It will look something like `neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com`. As that is a bit of a pain, let's assign it to an environmental variable:
 ```
