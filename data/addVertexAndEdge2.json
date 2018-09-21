@@ -1,3 +1,3 @@
 {
-    "gremlin": "g.addV('PERSON; INTERN').property(id, '3').property('name', 'Carl').next() g.addE('MANAGES').from(g.V('2')).to(g.V('3')).property('dateStart', datetime('2018-08-01T00:00:00'))"
+    "gremlin": "g.addV('PERSON::INTERN').property(id, '3').property('name', 'Carl').next() g.addE('MANAGES').from(g.V('2')).to(g.V('3')).property('dateStart', datetime('2018-08-01T00:00:00'))"
 }
