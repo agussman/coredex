@@ -13,7 +13,7 @@ Following instructions here: https://docs.aws.amazon.com/neptune/latest/userguid
  Before beginning, make sure you've created an existing EC2 ssh key (`.pem`).
 
  1) No changes on Select Template, hit Next
- 2) On Specify Details under Parameters, change *DbInstanceType* to `db.r4.large`, *EC2ClientInstanceType* to `t2.micro`. Select your `.pem` for *EC2SSHKeyPairName*. 
+ 2) On Specify Details under Parameters, change *DbInstanceType* to `db.r4.large`, *EC2ClientInstanceType* to `t2.micro`. Select your `.pem` for *EC2SSHKeyPairName*.
  3) Options, no change
  4) Review and Create
  5) Wait. This seems like it takes way longer than it should. Easy 10 minutes.
@@ -22,7 +22,7 @@ Once it completes, you'll have a `t2.micro` instance you can ssh into and from t
 
 Something to be aware of is that the default Security Group settings allow port 8182 access to the bastion host.
 
-# Setting up Neptune
+# Setting up Neptune manually (Not really recommended)
 
 We're going to launch a Neptune Cluster and a small EC2 instance to connect to the cluster and host a lightweight web interface for exploring graph data.
 
@@ -32,6 +32,7 @@ We're going to launch a Neptune Cluster and a small EC2 instance to connect to t
 
  3) Next I launched a `t2.micro` instance. Once it was running, I ssh'd in and installed Git and Apache (most of these steps are detailed [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html):
 ```
+$ sudo yum install git
 $ sudo yum install -y httpd
 $ sudo service httpd start
 $ sudo chkconfig httpd on
@@ -45,11 +46,16 @@ $ sudo yum install git
 ```
  4) Test connecting to the Graph
 
-Get the "Cluster endpoint" URL from the "Clusters" page. It will look something like `neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com`.
+Get the "Cluster endpoint" URL from the "Clusters" page. It will look something like `neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com`. As that is a bit of a pain, let's assign it to an environmental variable:
+```
+$ NEPTUNE=neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com
+```
+
+TODO: Use `aws neptune describe-db-clusters` to get the endpoint.
 
 Use the `curl` command to try and retrieve a portion of the graph:
 ```
-$ curl -X POST -d '{"gremlin":"g.V().limit(1)"}' http://neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182/gremlin
+$ curl -X POST -d '{"gremlin":"g.V().limit(1)"}' http://$NEPTUNE:8182/gremlin
 ```
 The response should look something like this (because there's no data in the graph yet):
 ```
@@ -67,7 +73,7 @@ $ source ~/.bashrc
 
 We can then pipe the output to `ppjson` to get more-readable output:
 ```
-$ curl -X POST -d '{"gremlin":"g.V().limit(1)"}' http://neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182/gremlin | ppjson
+$ curl -X POST -d '{"gremlin":"g.V().limit(1)"}' http://$NEPTUNE:8182/gremlin | ppjson
 {
     "requestId": "50b1dca5-418c-f683-54e5-2c17d078cbc8",
     "result": {
@@ -95,30 +101,31 @@ $ curl -X POST -d '{"gremlin":"g.V().limit(1)"}' http://neptest2.cluster-cvinl5e
 
 We can use the REST endpoint to insert data. For convienence we can put the Gremlin query in its own .json file and tell `curl` to read the data from there:
 ```
-$ cat addVertex.json
+$ cat data/addVertex.json
 {
   "gremlin": "g.addV('PERSON').property(id, '1').property('name', 'Alfred')"
 }
-$ curl -X POST -d @addVerticies.json http://neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182/gremlin | ppjson
+$ curl -X POST -d @data/addVertex.json http://$NEPTUNE:8182/gremlin | ppjson
 ```
 
 The above will create a single vertex (or node) which we can view by rerunning our earlier query.
 
 It's possible to issue multiple gremlin commands in a single query. We can end the individual commands with `.next()` and separate them with a ' ' or a ';'.
 ```
-$ cat addVertexAndEdge.json
+$ cat data/addVertexAndEdge.json
 {
   "gremlin": "g.addV('PERSON').property(id, '2').property('name', 'Betty').next() g.addE('MANAGES').from(g.V('2')).to(g.V('1')).property('dateStart', datetime('2018-06-01T00:00:00'))"
 }
-$ curl -X POST -d @addVertexAndEdge.json http://neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182/gremlin | ppjson
+$ curl -X POST -d @data/addVertexAndEdge.json http://$NEPTUNE:8182/gremlin | ppjson
 ```
 
 # Inserting Data via the Gremlin Console
 
-Installation instructions can be found here: [Getting Started with Neptune (Gremlin Console)](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-console.html).
+If you launched the client instance via CloudFormation, Gremlin should be installed in your home directory and already configured with your cluster endpoint (yay for CloudFormation black magic!). Otherwise, installation instructions can be found here: [Getting Started with Neptune (Gremlin Console)](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-console.html).
 
 Launch the console with:
 ```
+$ cd ~/apache-tinkerpop-gremlin-console-3.3.2/
 $ bin/gremlin.sh
 ```
 
@@ -131,6 +138,43 @@ Swith to remote mode:
 ```
 gremlin> :remote console
 ```
+
+We can add a vertex with:
+```
+
+```
+
+You can add a edge with:
+```
+
+```
+
+You can list the edges and vertices with:
+```
+gremlin> g.E()
+==>e[f8b2fd35-ce79-ffd5-37ea-93cfffd06adb][2-MANAGES->1]
+==>e[92b2fd4e-a834-5264-354c-c8b71af36310][2-MANAGES->3]
+gremlin> g.V()
+==>v[1]
+==>v[3]
+==>v[2]
+```
+
+To get actually useful information:
+```
+gremlin> g.V('3').labels()
+==>PERSON::INTERN
+gremlin> g.V('3').properties()
+==>vp[name->Carl]
+```
+
+
+To drop a vertex and it's associated edges (Sorry Carl, things didn't work out):
+```
+gremlin> g.V('3').drop()
+```
+
+
 
 Note that default cardinality on Verticies is different than on Edges. By default, Vertex properties have 'Set' cardinality, which (somewhat confusingly) means you can have multiples of the same property. For example:
 ```
