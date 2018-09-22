@@ -232,10 +232,30 @@ We can view and explore our graph using [Graphexp](https://github.com/bricaud/gr
 
 If you didn't install Apache earlier, go back and install that or the web server of your choice.
 
-Clone the Graphexp checkout into the `/var/www/html` directory. Note that in a production environment you wouldn't want to do something like this, but I"m assuming you've locked down your security group so that only trusted parties have access to `:80` on your instance.
+## Installing Apache
+
+You'll need a webserver for Graphexp. [Here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html) is a pretty good overview of installing Apache but any webserver should do. In a nutshell:
+```
+$ sudo yum install -y httpd
+$ sudo service httpd start
+$ sudo chkconfig httpd on
+$ sudo groupadd www
+$ sudo usermod -a -G www ec2-user
+```
+log out, log back on
+```
+$ sudo chown -R root:www /var/www
+$ sudo chmod 775 /var/www/html
+$ sudo yum install git
+```
+
+## Graphexp
+
+Clone the Graphexp checkout directly into the `/var/www/html` directory. Note that in a production environment you wouldn't want to do something like this, but I"m assuming you've locked down your security group so that only trusted parties have access to `:80` on your instance.
 
 ```
-[ec2-user@ip-172-30-0-247 www]$ git clone https://github.com/bricaud/graphexp.git html
+$ cd /var/www
+$ git clone https://github.com/bricaud/graphexp.git html
 ```
 
 In order to get Graphexp to work with AWS Neptune, edit `scripts/graphConf.js` and set `SINGLE_COMMANDS_AND_NO_VARS = true`.
@@ -249,7 +269,7 @@ $ ssh -vv -i ~/.ssh/your_aws.pem -L 8182:neptest2.cluster-cvinl5ewseag.us-east-1
 
 Now we can view Graphexp by connecting to our AWS Instance's public IP (provided you modified the Security Group to allow connecitons from your IP on port 80).
 
-Change 'Protocol' to 'REST' and click 'Get graph info'. If the box is checked, you'll see a summary of your graph.
+Change 'Protocol' to 'REST' (dropdown at the bottom) and click 'Get graph info'. If the box is checked, you'll see a summary of your graph.
 
 In the search interface at the top, type 'PERSON' in the 'Node label' box and click 'Search'. You should see your nodes come back, and the relationships between them.
 
@@ -273,6 +293,9 @@ $ curl 172.30.2.226:8182
 ```
 I don't know what this means (yet).
 
+# Closing Thoughts
+
+ * A lot (all) of the Gremlin / TinkerPop documentation is aggressively obtuse an inaccessible. If you are a "learn from first principles" kinda person, good news! If you are a "learn from some basic examples and intuiting the functionality" well, you found this page at least.
 
 # References
 
