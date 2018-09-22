@@ -120,7 +120,7 @@ $ cat data/addVertexAndEdge.json
 $ curl -X POST -d @data/addVertexAndEdge.json http://$NEPTUNE:8182/gremlin | ppjson
 ```
 
-# Inserting Data via the Gremlin Console
+# Inserting and Querying Data via the Gremlin Console
 
 If you launched the client instance via CloudFormation, Gremlin should be installed in your home directory and already configured with your cluster endpoint (yay for CloudFormation black magic!). Otherwise, installation instructions can be found here: [Getting Started with Neptune (Gremlin Console)](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-console.html).
 
@@ -140,15 +140,14 @@ Swith to remote mode:
 gremlin> :remote console
 ```
 
-We can add a vertex with:
+Using the gremlin console, we can add another vertex and edge for someone using the same syntax as our JSON payload, with the slight wrinkle that they are not entirely a regular PERSON but are also an INTERN. This is useful if we want to represent nodes that are of multple classes/types:
 ```
-
+gremlin> g.addV('PERSON::INTERN').property(id, '3').property('name', 'Carl')
+==>v[3]
+gremlin> g.addE('MANAGES').from(g.V('2')).to(g.V('3')).property('dateStart', datetime('2018-09-20T00:00:00'))
+==>e[0cb2ff8d-324e-2699-d5d0-8186f7369d33][2-MANAGES->3]
 ```
-
-You can add a edge with:
-```
-
-```
+We issued the above as two separate commands, but they could have been combined using the `.next() ` syntax used in the REST API call.
 
 You can list the edges and vertices with:
 ```
@@ -166,6 +165,20 @@ To get actually useful information:
 gremlin> g.V('3').labels()
 ==>PERSON::INTERN
 gremlin> g.V('3').properties()
+==>vp[name->Carl]
+```
+
+Get all the `PERSON` vertices and their `name`s:
+```
+gremlin> g.V().hasLabel("PERSON").properties("name")
+==>vp[name->Alfred]
+==>vp[name->Carl]
+==>vp[name->Betty]
+```
+
+To list all the `INTERN` nodes:
+```
+gremlin> g.V().hasLabel("INTERN").properties("name")
 ==>vp[name->Carl]
 ```
 
@@ -206,6 +219,7 @@ In fact, edge properties always have 'single' cardinality; you can't make an edg
 
 However, you can make a Vertex property have 'single' cardinality by passing it `single` as a parameter:
 ```
+g.V('1').property('favorite', 'mango')
 g.V('1').property(single, 'favorite', 'kiwi')
 g.V('1').properties()
 ==>vp[name->Alfred]
@@ -267,3 +281,4 @@ I don't know what this means (yet).
  * [Connecting to Neptune with the Gremlin Console](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-console.html)
  * [Neptune Gremlin Implementation Differences, plus info on Cardinality ](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-differences.html)
  * [Installing Apache Web Server on AWS Linux 2](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html)
+ * [Gremlin Graph Guide](https://kelvinlawrence.net/book/Gremlin-Graph-Guide.html) is fairly accessible and in-depth and the source of the FlightPaths data
