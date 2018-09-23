@@ -44,7 +44,13 @@ def main():
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
             print(row["~id"])
-            g.addV(row["~label"]).property(T.id, row["~id"]).next()
+            v = g.addV(row["~label"]).property(T.id, row["~id"]).next()
+            for plabel, pval in row.iteritems():
+                if plabel.startswith('~'):
+                    continue
+                pname, ptype = plabel.split(':')
+                v.property(pname, pval)
+            v.next()
 
 
     print(g.V().limit(2).toList())
