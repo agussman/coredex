@@ -58,7 +58,7 @@ def main():
             to_id = id_transform(row["~to"])
             print(edge_id)
 
-            e = g.V(from_id).addE(row["~label"]).to( g.V(to_id) ).property(T.id, edge_id).next()
+            e = g.V(from_id).addE(row["~label"]).to( g.V(to_id) ).property(T.id, edge_id)
 
             for key in row:
                 if key.startswith('~'):
