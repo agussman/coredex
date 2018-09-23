@@ -6,6 +6,7 @@ from __future__  import print_function  # Python 2/3 compatibility
 # import fileinput
 # import glob
 import argparse
+import csv
 # import os
 # from os.path import basename
 #
@@ -28,7 +29,7 @@ def main():
     # Read the variables
     args = parse_options()
     neptune = args.neptune
-
+    v_file = args.vertices
 
     # Connect to Neptune
     neptune_constr = "ws://%s/gremlin" % neptune
@@ -39,12 +40,23 @@ def main():
 
     print(g.V().limit(2).toList())
 
+    # Load the nodes / vertices from csv
+    #csvreader = csv.reader(fileinput.input(), delimiter=',', quotechar='"')
+    with open(v_file, newline='') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
+        for row in reader:
+            print(row["~id"])
+
+
+
+
 def parse_options():
      parser = argparse.ArgumentParser(description='Load CSVs into AWS Neptune')
      #parser.add_argument('crds', metavar='N', type=int, nargs='+', help="description") # grab the arguments as a list, they need to be ints
      #parser.add_argument('-f', '--files', dest='input_glob', action="store", metavar="GLOB", required=True)
      #parser.add_argument('-o', '--out_dir', dest='out_dir', action="store", metavar="DIR", required=True)
      parser.add_argument('-n', '--neptune', dest='neptune', action="store", metavar="URI:PORT", required=True)
+     parser.add_argument('-v', '--vertices', dest='vertices', action="store", metavar="FILE", required=True)
      
      return parser.parse_args()
 
