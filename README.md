@@ -301,13 +301,16 @@ I don't know what this means (yet).
 
 # Closing Thoughts
 
- * A lot (all) of the Gremlin / TinkerPop documentation is aggressively obtuse an inaccessible. If you are a "learn from first principles" kinda person, good news! If you are a "learn from some basic examples and intuiting the functionality" well, you found this page at least.
+ * A lot (all) of the Gremlin / TinkerPop documentation is aggressively obtuse an inaccessible. If you are a "learn from first principles" kinda person, good news! If you are a "learn from some basic examples and intuiting the functionality" well, you found this page at least. The [Neptune Gremlin Quickstart](https://docs.aws.amazon.com/neptune/latest/userguide/quickstart.html#quickstart-graph-gremlin) was helpful too.
+
+ * [graphml is not natively loadable](https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html), you'll need to convert it to csv first using [GraphML2CSV](https://github.com/awslabs/amazon-neptune-tools/blob/master/graphml2csv/README.md).
 
 # References
 
  * [Launching a Neptune DB Cluster](https://docs.aws.amazon.com/neptune/latest/userguide/get-started-CreateInstance-Console.html)
  * [EC2 Web Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html)
  * [Connecting to Neptune with the Gremlin Console](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-console.html)
+ * [Neptune Gremlin Quickstart](https://docs.aws.amazon.com/neptune/latest/userguide/quickstart.html#quickstart-graph-gremlin)
  * [Neptune Gremlin Implementation Differences, plus info on Cardinality ](https://docs.aws.amazon.com/neptune/latest/userguide/access-graph-gremlin-differences.html)
  * [Installing Apache Web Server on AWS Linux 2](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html)
  * [Gremlin Graph Guide](https://kelvinlawrence.net/book/Gremlin-Graph-Guide.html) is fairly accessible and in-depth and the source of the FlightPaths data
