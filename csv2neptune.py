@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-
-#
-# Load a CSV file into an AWS Neptune instance. Inefficiently.
-#
-
+'''
+Load a CSV file into an AWS Neptune instance. Inefficiently.
+'''
+from __future__  import print_function  # Python 2/3 compatibility
 # import fileinput
 # import glob
 import argparse
@@ -11,7 +10,7 @@ import argparse
 # from os.path import basename
 #
 # from bs4 import BeautifulSoup
-from __future__  import print_function  # Python 2/3 compatibility
+
 
 from gremlin_python import statics
 from gremlin_python.structure.graph import Graph
