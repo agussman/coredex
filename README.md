@@ -182,6 +182,12 @@ gremlin> g.V().hasLabel("INTERN").properties("name")
 ==>vp[name->Carl]
 ```
 
+Run a traversal with values (valueMap())
+```
+gremlin> g.V().has('name', 'Betty').out('MANAGES').valueMap()
+==>{name=[Alfred]}
+==>{name=[Carl]}
+```
 
 To drop a vertex and it's associated edges (Sorry Carl, things didn't work out):
 ```
