@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+
+#
+# Load a CSV file into an AWS Neptune instance. Inefficiently.
+#
+
+# import fileinput
+# import glob
+import argparse
+# import os
+# from os.path import basename
+#
+# from bs4 import BeautifulSoup
+from __future__  import print_function  # Python 2/3 compatibility
+
+from gremlin_python import statics
+from gremlin_python.structure.graph import Graph
+from gremlin_python.process.graph_traversal import __
+from gremlin_python.process.strategies import *
+from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection
+
+
+import logging
+logging.basicConfig()
+LOG = logging.getLogger('csv2neptune')
+LOG.setLevel(logging.DEBUG)
+
+def main():
+    # Read the variables
+    args = parse_options()
+    neptune = args.neptune
+
+
+    # Connect to Neptune
+    neptune_constr = "ws://your-neptune-endpoint:8182/gremlin" & neptune
+    LOG.debug("Connecting to Neptune REST Endpoint %s", neptune)
+    graph = Graph()
+
+    g = graph.traversal().withRemote(DriverRemoteConnection(neptune_constr,'g'))
+
+    print(g.V().limit(2).toList())
+
+def parse_options():
+     parser = argparse.ArgumentParser(description='Load CSVs into AWS Neptune')
+     #parser.add_argument('crds', metavar='N', type=int, nargs='+', help="description") # grab the arguments as a list, they need to be ints
+     #parser.add_argument('-f', '--files', dest='input_glob', action="store", metavar="GLOB", required=True)
+     #parser.add_argument('-o', '--out_dir', dest='out_dir', action="store", metavar="DIR", required=True)
+     parser.add_argument('-n', '--neptune', dest='neptune', action="store", metavar="URI:PORT:w", required=True)
+     
+     return parser.parse_args()
+
+if __name__ == '__main__':
+    main()

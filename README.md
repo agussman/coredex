@@ -280,6 +280,48 @@ Change 'Protocol' to 'REST' (dropdown at the bottom) and click 'Get graph info'.
 In the search interface at the top, type 'PERSON' in the 'Node label' box and click 'Search'. You should see your nodes come back, and the relationships between them.
 
 
+# Inserting GraphML
+
+You can't. You have to convert it to CSV first.
+
+# Converting GraphML to CSV and Insert
+
+## Convert GraphML to CSV
+
+Download the [GraphML 2 Neptune CSV](https://github.com/awslabs/amazon-neptune-tools/blob/master/graphml2csv/README.md) script part of [Amazon Neptune Tools](https://github.com/awslabs/amazon-neptune-tools):
+```
+$ clone https://github.com/awslabs/amazon-neptune-tools.git
+```
+
+Download some sample data. We're going to use air routes between airports (this is provided from the [Practical Gremlin](https://kelvinlawrence.net/book/Gremlin-Graph-Guide.html#air) online book, which is one of the better resources I've found):
+```
+$ wget https://raw.githubusercontent.com/krlawrence/graph/master/sample-data/air-routes-small.graphml
+```
+
+Convert it to CSV:
+```
+$ ./amazon-neptune-tools/graphml2csv/graphml2csv.py -i air-routes-small.graphml
+infile = air-routes-small.graphml
+Processing air-routes-small.graphml
+Wrote 47 nodes and 602 attributes to air-routes-small-nodes.csv.
+Wrote 1326 edges and 2652 attributes to air-routes-small-edges.csv.
+```
+
+## Loading a CSV into Neptune
+
+This is fairly complicated and requires uploading properly formated CSV files (one for nodes and ones for edges) to S3, creating an S3 VPC endpoint, setting IAM privledges, and kicking off an async loading operation via the curl API. It's outside the current scope of this guide, but you can find instructions [here](https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load.html).
+
+## Loading a CSV into Neptune with Python
+
+Install `gremlinpython`:
+```
+$ pip install ‑‑user gremlinpython 
+```
+
+
+
+
+
 # Troubleshooting
 
 If `curl` doesn't produce a response at all, check that you created a Security Group that allows your EC2 instance to reach the Cluster endpoint
