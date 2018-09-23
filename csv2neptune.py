@@ -44,7 +44,7 @@ def main():
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
             print(row["~id"])
-            v = g.addV(row["~label"]).property(T.id, row["~id"]).next()
+            v = g.addV(row["~label"]).property(T.id, "i"+row["~id"]).next()
             for plabel, pval in row.iteritems():
                 if plabel.startswith('~'):
                     continue
