@@ -31,7 +31,7 @@ def main():
 
 
     # Connect to Neptune
-    neptune_constr = "ws://your-neptune-endpoint:8182/gremlin" & neptune
+    neptune_constr = "ws://%s/gremlin" % neptune
     LOG.debug("Connecting to Neptune REST Endpoint %s", neptune)
     graph = Graph()
 
@@ -44,7 +44,7 @@ def parse_options():
      #parser.add_argument('crds', metavar='N', type=int, nargs='+', help="description") # grab the arguments as a list, they need to be ints
      #parser.add_argument('-f', '--files', dest='input_glob', action="store", metavar="GLOB", required=True)
      #parser.add_argument('-o', '--out_dir', dest='out_dir', action="store", metavar="DIR", required=True)
-     parser.add_argument('-n', '--neptune', dest='neptune', action="store", metavar="URI:PORT:w", required=True)
+     parser.add_argument('-n', '--neptune', dest='neptune', action="store", metavar="URI:PORT", required=True)
      
      return parser.parse_args()
 
