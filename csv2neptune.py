@@ -51,7 +51,7 @@ def main():
             for key in row:
                 if key.startswith('~'):
                     continue
-                v.property(key, "yes")
+                v.property(key, row[key])
             v.next()
 
 
