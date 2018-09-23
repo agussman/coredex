@@ -66,14 +66,17 @@ def main():
             edge_id = id_transform(row["~id"])
             from_id = id_transform(row["~from"])
             to_id = id_transform(row["~to"])
-            print(myid)
-            e = g.addE(row["~label"]).from(from_id).to(to_id).property(T.id, edge_id)
-            for key in row:
-                if key.startswith('~'):
-                    continue
-                plabel, ptype = key.split(':')
-                e.property(plabel, row[key])
-            e.next()
+            print(edge_id)
+
+            e = g.V(from_id).addE(row["~label"]).to( g.V(to_id) ).next()
+
+            # e = g.addE(row["~label"]).from(from_id).to(to_id).property(T.id, edge_id)
+            # for key in row:
+            #     if key.startswith('~'):
+            #         continue
+            #     plabel, ptype = key.split(':')
+            #     e.property(plabel, row[key])
+            # e.next()
 
 
     print(g.V().limit(2).toList())
