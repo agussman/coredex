@@ -43,13 +43,15 @@ def main():
     with open(v_file) as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
+            myid = "id_"+row["~id"]
             print(row["~id"])
-            v = g.addV(row["~label"]).property(T.id, "i"+row["~id"]).next()
-            for plabel, pval in row.iteritems():
-                if plabel.startswith('~'):
+            v = g.addV(row["~label"]).property(T.id, myid)
+            #v.property("foo", "bar")
+            #v.property("ack", "syn")
+            for key in row:
+                if key.startswith('~'):
                     continue
-                pname, ptype = plabel.split(':')
-                v.property(pname, pval)
+                v.property(key, "yes")
             v.next()
 
 
