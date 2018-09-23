@@ -89,7 +89,7 @@ def parse_options():
      #parser.add_argument('-o', '--out_dir', dest='out_dir', action="store", metavar="DIR", required=True)
      parser.add_argument('-n', '--neptune', dest='neptune', action="store", metavar="URI:PORT", required=True)
      parser.add_argument('-v', '--vertices', dest='vertices', action="store", metavar="FILE", required=True)
-     parser.add_argument('-e', '--edges', dest='vertices', action="store", metavar="FILE", required=True)
+     parser.add_argument('-e', '--edges', dest='edges', action="store", metavar="FILE", required=True)
      
      return parser.parse_args()
 
