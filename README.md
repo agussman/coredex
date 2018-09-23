@@ -264,7 +264,7 @@ $ cd /var/www
 $ git clone https://github.com/bricaud/graphexp.git html
 ```
 
-In order to get Graphexp to work with AWS Neptune, edit `scripts/graphConf.js` and set `SINGLE_COMMANDS_AND_NO_VARS = true`.
+In order to get Graphexp to work with AWS Neptune, edit `scripts/graphConf.js` and set `SINGLE_COMMANDS_AND_NO_VARS = true`. If you're working with non-trivial amounts of data, you'll also want to increase `REST_TIMEOUT` if you're working with non-trivial amounts of data.
 
 We can now view Graphexp's web interface by connecting to our AMI instance. However, there's a slight wrinkle in that we still need to query the AWS Neptune backend for data and our _web browser_ will be sending those requests. This is an issue because only machines in the same VPC can connect to the Neptune cluster endpoint.
 
@@ -278,6 +278,8 @@ Now we can view Graphexp by connecting to our AWS Instance's public IP (provided
 Change 'Protocol' to 'REST' (dropdown at the bottom) and click 'Get graph info'. If the box is checked, you'll see a summary of your graph.
 
 In the search interface at the top, type 'PERSON' in the 'Node label' box and click 'Search'. You should see your nodes come back, and the relationships between them.
+
+The GraphExp interface is little non-intuitive. If you find nodes mysteriously disappearing, try checking "Freeze exploration".
 
 
 # Inserting GraphML
@@ -318,7 +320,10 @@ Install `gremlinpython`:
 $ pip install ‑‑user gremlinpython 
 ```
 
-
+You can then load the CSV files with `csv2neptune.py`:
+```
+ ./csv2neptune.py -n $NEPTUNE:8182 -v ~/air-routes-small-nodes.csv -e ~/air-routes-small-edges.csv
+```
 
 
 
