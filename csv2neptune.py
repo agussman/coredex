@@ -18,7 +18,7 @@ from gremlin_python.structure.graph import Graph
 from gremlin_python.process.graph_traversal import __
 from gremlin_python.process.strategies import *
 from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection
-
+from gremlin_python.process.traversal import T
 
 import logging
 logging.basicConfig()
@@ -38,16 +38,16 @@ def main():
 
     g = graph.traversal().withRemote(DriverRemoteConnection(neptune_constr,'g'))
 
-    print(g.V().limit(2).toList())
-
     # Load the nodes / vertices from csv
     #csvreader = csv.reader(fileinput.input(), delimiter=',', quotechar='"')
-    with open(v_file, newline='') as csvfile:
+    with open(v_file) as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
             print(row["~id"])
+            g.addV(row["~label"]).property(T.id, row["~id"]).next()
 
 
+    print(g.V().limit(2).toList())
 
 
 def parse_options():
