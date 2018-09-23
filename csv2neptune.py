@@ -51,7 +51,8 @@ def main():
             for key in row:
                 if key.startswith('~'):
                     continue
-                v.property(key, row[key])
+                plabel, ptype = key.split(':')
+                v.property(plabel, row[key])
             v.next()
 
 
