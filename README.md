@@ -159,6 +159,10 @@ gremlin> g.V('3').labels()
 ==>PERSON::INTERN
 gremlin> g.V('3').properties()
 ==>vp[name->Carl]
+gremlin> g.V('3').valueMap(true).unfold()
+==>id=3
+==>label=PERSON::INTERN
+==>name=[Carl]
 ```
 
 Get all the `PERSON` vertices and their `name`s:
