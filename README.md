@@ -20,7 +20,7 @@ Following instructions here: https://docs.aws.amazon.com/neptune/latest/userguid
 
 Once it completes, you'll have a `t2.micro` instance you can ssh into and from there you can access the Neptune instance gremlin endpoint on port 8182. It will also create a new VPC along with three subnets (one for each Availability Zone in us-east).
 
-Something to be aware of is that the default Security Group settings allow port 8182 access to the bastion host.
+Something to be aware of is that the default Security Group settings allow port 8182 access to the bastion host. After everything is up and running, log into the bastion host / neptune client instance.
 
 # Setting up Neptune manually (Not really recommended)
 
@@ -30,22 +30,15 @@ We're going to launch a Neptune Cluster and a small EC2 instance to connect to t
 
  2) The default wizard doesn't create a Security Group that allows access to the DB server. Needed to create a new security group that allows access on port 8182 and applied it to the cluster. Note that the default option is to apply it during the next maintainence window, which could potentially be a few days off, or you can just jam it now (guess which I chose?).
 
- 3) Next I launched a `t2.micro` instance. Once it was running, I ssh'd in and installed Git and Apache (most of these steps are detailed [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html):
-```
-$ sudo yum install git
-$ sudo yum install -y httpd
-$ sudo service httpd start
-$ sudo chkconfig httpd on
-$ sudo groupadd www
-$ sudo usermod -a -G www ec2-user
-```
-log out, log back on
-```
-$ sudo chown -R root:www /var/www
-$ sudo yum install git
-```
+ 3) Next I launched a `t2.micro` instance using an AWS Linux 2 AMI. Once it was running, I ssh'd in and installed Git and Apache (most of these steps are detailed [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html):
 
 # Neptune REST API
+
+After you log into your bastion host/neptune client, you may want to pull down the latest version of the scripts and sample data:
+```
+$ git clone https://github.com/agussman/coredex.git
+```
+
 
 Get the "Cluster endpoint" URL from the "Clusters" page. It will look something like `neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com`. As that is a bit of a pain, let's assign it to an environmental variable:
 ```
@@ -329,9 +322,9 @@ You can then load the CSV files with `csv2neptune.py`:
 
 # Troubleshooting
 
-If `curl` doesn't produce a response at all, check that you created a Security Group that allows your EC2 instance to reach the Cluster endpoint
+1) If `curl` doesn't produce a response at all, check that you created a Security Group that allows your EC2 instance to reach the Cluster endpoint
 
-If you get `AccessDeniedException` messages as such:
+2) If you get `AccessDeniedException` messages as such:
 
 ```
 $ curl nep-test001.cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182
@@ -339,12 +332,14 @@ $ curl nep-test001.cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182
 ```
 you probably set "IAM DB authentication" to "Enable IAM DB authentication" instead of "Disable". As near as I can tell, this cannot be modified after launch.
 
-It's possible you might see this message if you hit the IP directly:
+3) It's possible you might see this message if you hit the IP directly:
 ```
 $ curl 172.30.2.226:8182
 {"requestId":"44b1d791-20b3-1ff9-43b7-60a48b16bf3e","code":"BadRequestException","detailedMessage":"Bad request."}
 ```
 I don't know what this means (yet).
+
+4) The current version (0.8.0) of GraphExp has a bug where it won't pull back details on an individual vertex of `id` is an integer (it'll throw what looks like a CORS exception).That's why csv2neptune.py does the funky think w/ altering the ids.
 
 # Closing Thoughts
 
