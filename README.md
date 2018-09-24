@@ -6,11 +6,11 @@ The eventual purpose of this project is to provide a basic object model for repr
 ontologically valid model along with implenentation classes in software, it is hoped that these models will form a common framework
 for tool and software development. Currently it covers getting started with AWS Neptune.
 
-Following instructions here: https://docs.aws.amazon.com/neptune/latest/userguide/quickstart.html
-
 # Setting up Neptune using the CloudFormation Stack wizard
 
- Before beginning, make sure you've created an existing EC2 ssh key (`.pem`).
+Following instructions here: https://docs.aws.amazon.com/neptune/latest/userguide/quickstart.html
+
+Before beginning, make sure you've created an existing EC2 ssh key (`.pem`).
 
  1) No changes on Select Template, hit Next
  2) On Specify Details under Parameters, change *DbInstanceType* to `db.r4.large`, *EC2ClientInstanceType* to `t2.micro`. Select your `.pem` for *EC2SSHKeyPairName*.
