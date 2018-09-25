@@ -73,8 +73,8 @@ def main():
             e.next()
 
 
-    print("Vertices: %s", g.V().count().next())
-    print("Edges: %s", g.E().count().next())
+    print("Vertices: %s" % g.V().count().next())
+    print("Edges: %s" % g.E().count().next())
 
 
 def parse_options():
