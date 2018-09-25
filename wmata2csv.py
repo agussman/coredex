@@ -39,10 +39,16 @@ def main():
     r = requests.get(url, headers=headers)
 
     # Get the lines
-    lines = r.json()['Lines']
-
-    for l in lines:
+    lines = {}
+    for l in r.json()['Lines']:
         print(l["DisplayName"])
+        lines[l["LineCode"]] = {
+            "id": l["LineCode"],
+            "name": l["DisplayName"],
+            "color": l["DisplayName"].lower(),
+            "StartStationCode": l["StartStationCode"],
+            "EndStationCode": l["EndStationCode"]
+        }
 
     #print(lines)
 
@@ -86,20 +92,33 @@ def main():
 
 
     # Get the track segments
-    url = 'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo'
-    r = requests.get(url, headers=headers)
-
     segments = {}
-    for s in r.json()["StationToStationInfos"]:
-        id = "%s_%s" % (s["SourceStation"], s["DestinationStation"])
-        #print(s)
-        segments[id] = {
-            "~id": id,
-            "~from": code_to_station[s["SourceStation"]],
-            "~to": code_to_station[s["DestinationStation"]],
-            "~label": "SEGMENT",
-            "distance:double": s["CompositeMiles"]
+    for line in lines.values():
+        # For each line, pull down the full path
+        payload = {
+            "FromStationCode": line["StartStationCode"],
+            "ToStationCode": line["EndStationCode"]
         }
+
+
+        url = 'https://api.wmata.com/Rail.svc/json/jPath'
+        r = requests.get(url, headers=headers, params=payload)
+
+        paths = r.json()["Path"]
+        prev_code = line["StartStationCode"]
+        for p in paths[1:]:
+            id = "%s_%s" % (prev_code, p["StationCode"])
+            #print(s)
+            segments[id] = {
+                "~id": id,
+                "~from": code_to_station[prev_code],
+                "~to": code_to_station[p["StationCode"]],
+                "~label": "SEGMENT",
+                "distance:int": p["DistanceToPrev"],
+                "linecode:string": p["LineCode"],
+                "color:string": lines[p["LineCode"]]["color"]
+            }
+            prev_code = p["StationCode"]
 
 
     # Write track segments to disk
@@ -113,7 +132,7 @@ def main():
         print err_msg
         exit(1)
 
-    sorted_headers=["~id", "~from", "~to", "~label", "distance:double"]
+    sorted_headers=["~id", "~from", "~to", "~label", "distance:int", "color:string"]
     writer = csv.DictWriter(out_fh, sorted_headers, restval='', extrasaction='ignore', delimiter=',')
     writer.writeheader()
     for segment in segments.values():
