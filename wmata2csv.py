@@ -57,6 +57,7 @@ def main():
         # One station can have multiple track Codes, so we need the dict lookup
         code_to_station[s['Code']] = s['Name']
         # Station names are the only way to id stations?
+        # note that the same station shows up multiple times but we're just clobbering it and loosing Code/StationTogether1 info
         stations[s['Name']] = {
             "~id": s['Name'],
             "~label": "STATION",
@@ -82,6 +83,43 @@ def main():
     writer.writeheader()
     for station in stations.values():
         writer.writerow(station)
+
+
+    # Get the track segments
+    url = 'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo'
+    r = requests.get(url, headers=headers)
+
+    segments = {}
+    for s in r.json()["StationToStationInfos"]:
+        id = "%s_%s" % (s["SourceStation"], s["DestinationStation"])
+        #print(s)
+        segments[id] = {
+            "~id": id,
+            "~from": code_to_station[s["SourceStation"]],
+            "~to": code_to_station[s["DestinationStation"]],
+            "~label": "SEGMENT",
+            "distance:double": s["CompositeMiles"]
+        }
+
+
+    # Write track segments to disk
+    out_file_name = "data/station-edges.csv"
+    out_fh = None
+    try:
+        out_fh = open(out_file_name, mode='wb')
+    except IOError as io_err:
+        err_msg = "Unable to write to file (%s). %s" % (out_file_name, io_err)
+        logger.error(err_msg)
+        print err_msg
+        exit(1)
+
+    sorted_headers=["~id", "~from", "~to", "~label", "distance:double"]
+    writer = csv.DictWriter(out_fh, sorted_headers, restval='', extrasaction='ignore', delimiter=',')
+    writer.writeheader()
+    for segment in segments.values():
+        writer.writerow(segment)
+
+
 
 
     # # Confirm we can write the output file before proceeding with more expensive operations like
