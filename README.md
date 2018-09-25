@@ -345,6 +345,8 @@ I don't know what this means (yet).
 
 4) The current version (0.8.0) of GraphExp has a bug where it won't pull back details on an individual vertex of `id` is an integer (it'll throw what looks like a CORS exception).That's why csv2neptune.py does the funky think w/ altering the ids.
 
+5) If something works correctly in the gremlin terminal but you're getting a strange error when you attempt to recreate it with `gremlin-python`, you might be missing a `.next()`. The terminal automatically adds a terminating step.
+
 # Closing Thoughts
 
  * A lot (all) of the Gremlin / TinkerPop documentation is aggressively obtuse an inaccessible. If you are a "learn from first principles" kinda person, good news! If you are a "learn from some basic examples and intuiting the functionality" well, you found this page at least. The [Neptune Gremlin Quickstart](https://docs.aws.amazon.com/neptune/latest/userguide/quickstart.html#quickstart-graph-gremlin) was helpful too.
