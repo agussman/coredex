@@ -1,0 +1,92 @@
+~id,~label,name:string,lat:double,lon:double
+Silver Spring,STATION,Silver Spring,38.993841,-77.031321
+Rosslyn,STATION,Rosslyn,38.896595,-77.07146
+Farragut North,STATION,Farragut North,38.903192,-77.039766
+Southern Avenue,STATION,Southern Avenue,38.840974,-76.97536
+West Hyattsville,STATION,West Hyattsville,38.954931,-76.969881
+Congress Heights,STATION,Congress Heights,38.845334,-76.98817
+Archives-Navy Memorial-Penn Quarter,STATION,Archives-Navy Memorial-Penn Quarter,38.893893,-77.021902
+Waterfront,STATION,Waterfront,38.876221,-77.017491
+Grosvenor-Strathmore,STATION,Grosvenor-Strathmore,39.029158,-77.10415
+Minnesota Ave,STATION,Minnesota Ave,38.898284,-76.948042
+Braddock Road,STATION,Braddock Road,38.814009,-77.053763
+East Falls Church,STATION,East Falls Church,38.885841,-77.157177
+Capitol South,STATION,Capitol South,38.884968,-77.005137
+Naylor Road,STATION,Naylor Road,38.851187,-76.956565
+Van Dorn Street,STATION,Van Dorn Street,38.799193,-77.129407
+Cleveland Park,STATION,Cleveland Park,38.934703,-77.058226
+Court House,STATION,Court House,38.891499,-77.08391
+Arlington Cemetery,STATION,Arlington Cemetery,38.884574,-77.063108
+Mt Vernon Sq 7th St-Convention Center,STATION,Mt Vernon Sq 7th St-Convention Center,38.905604,-77.022256
+Pentagon,STATION,Pentagon,38.869349,-77.054013
+Branch Ave,STATION,Branch Ave,38.826995,-76.912134
+Potomac Ave,STATION,Potomac Ave,38.880841,-76.985721
+Union Station,STATION,Union Station,38.897723,-77.006745
+College Park-U of Md,STATION,College Park-U of Md,38.978523,-76.928432
+Forest Glen,STATION,Forest Glen,39.015413,-77.042953
+Anacostia,STATION,Anacostia,38.862072,-76.995648
+Vienna/Fairfax-GMU,STATION,Vienna/Fairfax-GMU,38.877693,-77.271562
+Largo Town Center,STATION,Largo Town Center,38.9008,-76.8449
+U Street/African-Amer Civil War Memorial/Cardozo,STATION,U Street/African-Amer Civil War Memorial/Cardozo,38.916489,-77.028938
+Glenmont,STATION,Glenmont,39.061713,-77.05341
+Franconia-Springfield,STATION,Franconia-Springfield,38.766129,-77.168797
+L'Enfant Plaza,STATION,L'Enfant Plaza,38.884775,-77.021964
+Navy Yard-Ballpark,STATION,Navy Yard-Ballpark,38.876588,-77.005086
+Clarendon,STATION,Clarendon,38.886373,-77.096963
+Greenbelt,STATION,Greenbelt,39.011036,-76.911362
+NoMa-Gallaudet U,STATION,NoMa-Gallaudet U,38.907407,-77.002961
+McLean,STATION,McLean,38.924478,-77.210167
+Woodley Park-Zoo/Adams Morgan,STATION,Woodley Park-Zoo/Adams Morgan,38.924999,-77.052648
+Shaw-Howard U,STATION,Shaw-Howard U,38.912919,-77.022194
+Federal Triangle,STATION,Federal Triangle,38.893757,-77.028218
+Tysons Corner,STATION,Tysons Corner,38.920056,-77.223314
+Federal Center SW,STATION,Federal Center SW,38.884958,-77.01586
+New Carrollton,STATION,New Carrollton,38.947674,-76.872144
+Friendship Heights,STATION,Friendship Heights,38.960744,-77.085969
+Huntington,STATION,Huntington,38.793841,-77.075301
+King St-Old Town,STATION,King St-Old Town,38.806474,-77.061115
+Crystal City,STATION,Crystal City,38.85779,-77.050589
+White Flint,STATION,White Flint,39.048043,-77.113131
+Takoma,STATION,Takoma,38.975532,-77.017834
+Smithsonian,STATION,Smithsonian,38.888022,-77.028232
+Bethesda,STATION,Bethesda,38.984282,-77.094431
+Shady Grove,STATION,Shady Grove,39.119819,-77.164921
+Prince George's Plaza,STATION,Prince George's Plaza,38.965276,-76.956182
+Dunn Loring-Merrifield,STATION,Dunn Loring-Merrifield,38.883015,-77.228939
+Judiciary Square,STATION,Judiciary Square,38.896084,-77.016643
+Stadium-Armory,STATION,Stadium-Armory,38.88594,-76.977485
+Gallery Pl-Chinatown,STATION,Gallery Pl-Chinatown,38.89834,-77.021851
+Brookland-CUA,STATION,Brookland-CUA,38.933234,-76.994544
+Eastern Market,STATION,Eastern Market,38.884124,-76.995334
+Van Ness-UDC,STATION,Van Ness-UDC,38.94362,-77.063511
+Capitol Heights,STATION,Capitol Heights,38.889757,-76.913382
+Rockville,STATION,Rockville,39.084215,-77.146424
+Greensboro,STATION,Greensboro,38.919749,-77.235192
+Rhode Island Ave-Brentwood,STATION,Rhode Island Ave-Brentwood,38.920741,-76.995984
+Fort Totten,STATION,Fort Totten,38.951777,-77.002174
+West Falls Church-VT/UVA,STATION,West Falls Church-VT/UVA,38.90067,-77.189394
+Columbia Heights,STATION,Columbia Heights,38.928672,-77.032775
+Suitland,STATION,Suitland,38.843891,-76.932022
+Eisenhower Avenue,STATION,Eisenhower Avenue,38.800313,-77.071173
+Foggy Bottom-GWU,STATION,Foggy Bottom-GWU,38.900599,-77.050273
+Ballston-MU,STATION,Ballston-MU,38.882071,-77.111845
+Pentagon City,STATION,Pentagon City,38.863045,-77.059507
+Metro Center,STATION,Metro Center,38.898303,-77.028099
+Morgan Boulevard,STATION,Morgan Boulevard,38.8913,-76.8682
+Wheaton,STATION,Wheaton,39.038558,-77.051098
+Virginia Square-GMU,STATION,Virginia Square-GMU,38.88331,-77.104267
+Addison Road-Seat Pleasant,STATION,Addison Road-Seat Pleasant,38.886713,-76.893592
+Tenleytown-AU,STATION,Tenleytown-AU,38.947808,-77.079615
+Deanwood,STATION,Deanwood,38.907734,-76.936177
+Medical Center,STATION,Medical Center,38.999947,-77.097253
+Georgia Ave-Petworth,STATION,Georgia Ave-Petworth,38.936077,-77.024728
+Dupont Circle,STATION,Dupont Circle,38.909499,-77.04362
+McPherson Square,STATION,McPherson Square,38.901316,-77.033652
+Landover,STATION,Landover,38.934411,-76.890988
+Spring Hill,STATION,Spring Hill,38.929273,-77.241988
+Ronald Reagan Washington National Airport,STATION,Ronald Reagan Washington National Airport,38.852985,-77.043805
+Benning Road,STATION,Benning Road,38.890488,-76.938291
+Farragut West,STATION,Farragut West,38.901311,-77.03981
+Twinbrook,STATION,Twinbrook,39.062359,-77.121113
+Wiehle-Reston East,STATION,Wiehle-Reston East,38.947753,-77.340179
+Cheverly,STATION,Cheverly,38.91652,-76.915427
