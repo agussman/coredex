@@ -254,7 +254,7 @@ $ sudo yum install git
 
 ## Graphexp
 
-Clone the Graphexp checkout directly into the `/var/www/html` directory. Note that in a production environment you wouldn't want to do something like this, but I"m assuming you've locked down your security group so that only trusted parties have access to `:80` on your instance.
+Clone the Graphexp checkout directly into the `/var/www/html` directory. Note that in a production environment you wouldn't want to do something like this, but I'm assuming you've locked down your security group so that only trusted parties have access to `:80` on your instance.
 
 ```
 $ cd /var/www
@@ -265,7 +265,7 @@ In order to get Graphexp to work with AWS Neptune, edit `scripts/graphConf.js` a
 
 We can now view Graphexp's web interface by connecting to our AMI instance. However, there's a slight wrinkle in that we still need to query the AWS Neptune backend for data and our _web browser_ will be sending those requests. This is an issue because only machines in the same VPC can connect to the Neptune cluster endpoint.
 
-There are a couple of ways to address this. A simple hack is to forword `localhost:8182` to the Neptune cluster endpoint over our ssh connection to our AMI. To do that, we (re)launch an ssh session with the `-L` option to create an ssh tunnel:
+There are a couple of ways to address this. A simple hack is to forward `localhost:8182` to the Neptune cluster endpoint over our ssh connection to our AMI. To do that, we (re)launch an ssh session with the `-L` option to create an ssh tunnel:
 ```
 $ ssh -vv -i ~/.ssh/your_aws.pem -L 8182:neptest2.cluster-cvinl5ewseag.us-east-1-beta.neptune.amazonaws.com:8182 ec2-user@<publicip>
 ```
@@ -322,6 +322,22 @@ You can then load the CSV files with `csv2neptune.py`:
  ./csv2neptune.py -n $NEPTUNE:8182 -v ~/air-routes-small-nodes.csv -e ~/air-routes-small-edges.csv
 ```
 
+
+# WMATA Data Example
+
+The script `wmata2csv.py` will download data from the Washington Metropolitan Area Transit Authority API and output CSV files that can be loaded into Neptune by `csv2neptune.py`.
+
+In order to use the script, you'll need a WMATA API key, which you can painlessly sign up for here: [developer.wmata.com](https://developer.wmata.com/).
+
+One you have your api key, you can run:
+```
+$ ./wmata2csv.py --api_key $APIKEY
+```
+
+This will output CSV files to the `data/` directory. You can then load these with:
+```
+$ ./csv2neptune.py -n $NEPTUNE:8182 -v data/station-nodes.csv -e data/station-edges.csv
+```
 
 
 # Troubleshooting
