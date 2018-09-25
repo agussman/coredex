@@ -322,6 +322,28 @@ You can then load the CSV files with `csv2neptune.py`:
  ./csv2neptune.py -n $NEPTUNE:8182 -v ~/air-routes-small-nodes.csv -e ~/air-routes-small-edges.csv
 ```
 
+The script is using the `gremlin-python` API to insert data into the Neptune endpoint:
+```
+    graph = Graph()
+
+    g = graph.traversal().withRemote(DriverRemoteConnection(neptune_constr,'g'))
+    # Load the nodes / vertices from csv
+    with open(v_file) as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
+        for row in reader:
+            myid = id_transform(row["~id"])
+            print(myid)
+            v = g.addV(row["~label"]).property(T.id, myid)
+            for key in row:
+                if key.startswith('~'):
+                    continue
+                plabel, ptype = key.split(':')
+                v.property(plabel, row[key])
+            v.next()
+```
+
+One thing to note is that it include some useful classes to support creating properties of specific types, e.g., the `T.id` used above.
+
 
 # WMATA Data Example
 
