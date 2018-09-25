@@ -62,6 +62,17 @@ def main():
     for s in r.json()['Stations']:
         # One station can have multiple track Codes, so we need the dict lookup
         code_to_station[s['Code']] = s['Name']
+
+        #print(s)
+
+        # This doesn't do what I want; lots of stations have multiple lines
+        # Set the color
+        # if s["LineCode2"] == None:
+        #     color = "purple"
+        # else:
+        #     color = lines[s["LineCode1"]]["color"]
+
+
         # Station names are the only way to id stations?
         # note that the same station shows up multiple times but we're just clobbering it and loosing Code/StationTogether1 info
         stations[s['Name']] = {
@@ -69,7 +80,8 @@ def main():
             "~label": "STATION",
             "name:string": s['Name'],
             "lat:double": s['Lat'],
-            "lon:double": s['Lon']
+            "lon:double": s['Lon'],
+            "color:string": lines[s["LineCode1"]]["color"]
         }
 
 
@@ -84,7 +96,7 @@ def main():
         print err_msg
         exit(1)
 
-    sorted_headers=["~id", "~label", "name:string", "lat:double", "lon:double"]
+    sorted_headers=["~id", "~label", "name:string", "lat:double", "lon:double", "color:string"]
     writer = csv.DictWriter(out_fh, sorted_headers, restval='', extrasaction='ignore', delimiter=',')
     writer.writeheader()
     for station in stations.values():
