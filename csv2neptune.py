@@ -19,6 +19,11 @@ LOG = logging.getLogger('csv2neptune')
 LOG.setLevel(logging.DEBUG)
 
 def id_transform(original_id):
+    '''
+    The current version (0.8.0) of GraphExp has a bug where it won't pull back details on an individual vertex of `id` is an integer (it'll throw what looks like a CORS exception).
+    :param original_id:
+    :return: modified version of the id to make it looks "stringy" to javascript
+    '''
     return "id_"+original_id
 
 def main():
@@ -68,7 +73,8 @@ def main():
             e.next()
 
 
-    print(g.V().limit(2).toList())
+    print("Vertices: {}", g.V().count())
+    print("Edges: {}", g.E().count())
 
 
 def parse_options():
