@@ -44,6 +44,7 @@ def main():
     with open(v_file) as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
+            # Note that we are transforming ids because of a bug in GraphExp
             myid = id_transform(row["~id"])
             print(myid)
             v = g.addV(row["~label"]).property(T.id, myid)
@@ -58,6 +59,7 @@ def main():
     with open(e_file) as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
+            # Note that we are transforming ids because of a bug in GraphExp
             edge_id = id_transform(row["~id"])
             from_id = id_transform(row["~from"])
             to_id = id_transform(row["~to"])

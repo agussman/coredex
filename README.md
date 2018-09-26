@@ -387,7 +387,7 @@ I don't know what this means (yet).
 
 # Closing Thoughts
 
- * A lot (all) of the Gremlin / TinkerPop documentation is aggressively obtuse an inaccessible. If you are a "learn from first principles" kinda person, good news! If you are a "learn from some basic examples and intuiting the functionality" well, you found this page at least. The [Neptune Gremlin Quickstart](https://docs.aws.amazon.com/neptune/latest/userguide/quickstart.html#quickstart-graph-gremlin) was helpful too.
+ * A lot (all) of the Gremlin / TinkerPop documentation is aggressively obtuse and inaccessible. If you are a "learn from first principles" kinda person, good news! If you are a "learn from some basic examples and intuiting the functionality" well, you found this page at least. The [Neptune Gremlin Quickstart](https://docs.aws.amazon.com/neptune/latest/userguide/quickstart.html#quickstart-graph-gremlin) was helpful too.
 
  * [graphml is not natively loadable](https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format.html), you'll need to convert it to csv first using [GraphML2CSV](https://github.com/awslabs/amazon-neptune-tools/blob/master/graphml2csv/README.md).
 
