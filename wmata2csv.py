@@ -71,6 +71,12 @@ def main():
         #     color = "purple"
         # else:
         #     color = lines[s["LineCode1"]]["color"]
+        if s["StationTogether1"] is not None and s["StationTogether1"]:
+            #print("|"+s["StationTogether1"]+"|")
+            color = "purple"
+        else:
+            color = lines[s["LineCode1"]]["color"]
+
 
 
         # Station names are the only way to id stations?
@@ -81,7 +87,8 @@ def main():
             "name:string": s['Name'],
             "lat:double": s['Lat'],
             "lon:double": s['Lon'],
-            "color:string": lines[s["LineCode1"]]["color"]
+            #"color:string": lines[s["LineCode1"]]["color"]
+            "color:string": color
         }
 
 
