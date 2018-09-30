@@ -1,94 +1,187 @@
 ~id,~from,~to,~label,distance:int,color:string
+J02_J03,Van Dorn Street,Franconia-Springfield,SEGMENT,18695,blue
+B06_B07,Fort Totten,Takoma,SEGMENT,10026,red
+B01_A01,Gallery Pl-Chinatown,Metro Center,SEGMENT,1505,red
+A08_A09,Friendship Heights,Bethesda,SEGMENT,9095,red
+G04_G03,Morgan Boulevard,Addison Road-Seat Pleasant,SEGMENT,8105,silver
+D08_D09,Stadium-Armory,Minnesota Ave,SEGMENT,11080,orange
 D12_D13,Landover,New Carrollton,SEGMENT,7655,orange
-G04_G05,Morgan Boulevard,Largo Town Center,SEGMENT,7256,silver
+C08_C09,Pentagon City,Crystal City,SEGMENT,4068,yellow
+A11_A10,Grosvenor-Strathmore,Medical Center,SEGMENT,11821,red
 C08_C07,Pentagon City,Pentagon,SEGMENT,3216,yellow
+A01_A02,Metro Center,Farragut North,SEGMENT,4178,red
 F04_F03,Waterfront,L'Enfant Plaza,SEGMENT,4158,green
+N02_N03,Tysons Corner,Greensboro,SEGMENT,3945,silver
+F04_F05,Waterfront,Navy Yard-Ballpark,SEGMENT,3326,green
+K05_K06,East Falls Church,West Falls Church-VT/UVA,SEGMENT,10918,orange
 F09_F08,Naylor Road,Southern Avenue,SEGMENT,6612,green
 F08_F07,Southern Avenue,Congress Heights,SEGMENT,5508,green
+C13_C14,King St-Old Town,Eisenhower Avenue,SEGMENT,3734,yellow
 E04_E05,Columbia Heights,Georgia Ave-Petworth,SEGMENT,4717,yellow
-B35_B04,NoMa-Gallaudet U,Rhode Island Ave-Brentwood,SEGMENT,5771,red
+E04_E03,Columbia Heights,U Street/African-Amer Civil War Memorial/Cardozo,SEGMENT,4715,yellow
+A01_B01,Metro Center,Gallery Pl-Chinatown,SEGMENT,1505,red
+B10_B09,Wheaton,Forest Glen,SEGMENT,8484,red
+A03_A04,Dupont Circle,Woodley Park-Zoo/Adams Morgan,SEGMENT,6304,red
+F08_F09,Southern Avenue,Naylor Road,SEGMENT,6612,green
 F06_F05,Anacostia,Navy Yard-Ballpark,SEGMENT,6254,green
+F06_F07,Anacostia,Congress Heights,SEGMENT,6851,green
 C03_C02,Farragut West,McPherson Square,SEGMENT,2001,orange
+C03_C04,Farragut West,Foggy Bottom-GWU,SEGMENT,2783,orange
+K05_N01,East Falls Church,McLean,SEGMENT,24558,silver
+B07_B06,Takoma,Fort Totten,SEGMENT,10026,red
 D01_D02,Federal Triangle,Smithsonian,SEGMENT,2016,orange
+C07_F03,Pentagon,L'Enfant Plaza,SEGMENT,12356,yellow
+F09_F10,Naylor Road,Suitland,SEGMENT,7658,green
+D08_D07,Stadium-Armory,Potomac Ave,SEGMENT,3750,orange
 D03_D04,L'Enfant Plaza,Federal Center SW,SEGMENT,1757,orange
-B10_B11,Wheaton,Glenmont,SEGMENT,9334,red
-A04_A03,Woodley Park-Zoo/Adams Morgan,Dupont Circle,SEGMENT,6304,red
+J02_C13,Van Dorn Street,King St-Old Town,SEGMENT,20246,blue
+G02_G01,Capitol Heights,Benning Road,SEGMENT,7779,silver
+G02_G03,Capitol Heights,Addison Road-Seat Pleasant,SEGMENT,5215,silver
+A13_A14,Twinbrook,Rockville,SEGMENT,10586,red
 E09_E10,College Park-U of Md,Greenbelt,SEGMENT,12981,green
 A15_A14,Shady Grove,Rockville,SEGMENT,14151,red
 D08_G01,Stadium-Armory,Benning Road,SEGMENT,13408,silver
-B05_B06,Brookland-CUA,Fort Totten,SEGMENT,7146,red
+A04_A05,Woodley Park-Zoo/Adams Morgan,Cleveland Park,SEGMENT,3740,red
+D10_D09,Deanwood,Minnesota Ave,SEGMENT,4723,orange
+A03_A02,Dupont Circle,Farragut North,SEGMENT,2711,red
+D07_D06,Potomac Ave,Eastern Market,SEGMENT,3289,orange
+K04_K03,Ballston-MU,Virginia Square-GMU,SEGMENT,2980,orange
+F01_F02,Gallery Pl-Chinatown,Archives-Navy Memorial-Penn Quarter,SEGMENT,1879,yellow
+B05_B04,Brookland-CUA,Rhode Island Ave-Brentwood,SEGMENT,4461,red
+A10_A11,Medical Center,Grosvenor-Strathmore,SEGMENT,11821,red
 B03_B35,Union Station,NoMa-Gallaudet U,SEGMENT,3553,red
+E06_E05,Fort Totten,Georgia Ave-Petworth,SEGMENT,8348,yellow
 E06_E07,Fort Totten,West Hyattsville,SEGMENT,10406,green
+A07_A08,Tenleytown-AU,Friendship Heights,SEGMENT,4135,red
+D13_D12,New Carrollton,Landover,SEGMENT,7655,orange
 C13_C12,King St-Old Town,Braddock Road,SEGMENT,3453,yellow
+K06_K07,West Falls Church-VT/UVA,Dunn Loring-Merrifield,SEGMENT,12638,orange
 A07_A06,Tenleytown-AU,Van Ness-UDC,SEGMENT,5841,red
 E05_E06,Georgia Ave-Petworth,Fort Totten,SEGMENT,8348,yellow
-G02_G03,Capitol Heights,Addison Road-Seat Pleasant,SEGMENT,5215,silver
-C07_F03,Pentagon,L'Enfant Plaza,SEGMENT,12356,yellow
+E05_E04,Georgia Ave-Petworth,Columbia Heights,SEGMENT,4717,yellow
+B08_B09,Silver Spring,Forest Glen,SEGMENT,8859,red
+A12_A13,White Flint,Twinbrook,SEGMENT,5895,red
+A04_A03,Woodley Park-Zoo/Adams Morgan,Dupont Circle,SEGMENT,6304,red
 K07_K06,Dunn Loring-Merrifield,West Falls Church-VT/UVA,SEGMENT,12638,orange
 F01_E01,Gallery Pl-Chinatown,Mt Vernon Sq 7th St-Convention Center,SEGMENT,2985,yellow
 N02_N01,Tysons Corner,McLean,SEGMENT,3454,silver
 D10_D11,Deanwood,Cheverly,SEGMENT,6149,orange
+K07_K08,Dunn Loring-Merrifield,Vienna/Fairfax-GMU,SEGMENT,13165,orange
 A13_A12,Twinbrook,White Flint,SEGMENT,5895,red
+B04_B35,Rhode Island Ave-Brentwood,NoMa-Gallaudet U,SEGMENT,5771,red
 A10_A09,Medical Center,Bethesda,SEGMENT,5530,red
+C04_C05,Foggy Bottom-GWU,Rosslyn,SEGMENT,6993,orange
 C15_C14,Huntington,Eisenhower Avenue,SEGMENT,2770,yellow
 F11_F10,Branch Ave,Suitland,SEGMENT,9144,green
+B02_B01,Judiciary Square,Gallery Pl-Chinatown,SEGMENT,1875,red
 B02_B03,Judiciary Square,Union Station,SEGMENT,3446,red
-D06_D07,Eastern Market,Potomac Ave,SEGMENT,3289,orange
-A05_A04,Cleveland Park,Woodley Park-Zoo/Adams Morgan,SEGMENT,3740,red
+A05_A06,Cleveland Park,Van Ness-UDC,SEGMENT,3320,red
+F07_F06,Congress Heights,Anacostia,SEGMENT,6851,green
 G03_G04,Addison Road-Seat Pleasant,Morgan Boulevard,SEGMENT,8105,silver
+G04_G05,Morgan Boulevard,Largo Town Center,SEGMENT,7256,silver
+A09_A08,Bethesda,Friendship Heights,SEGMENT,9095,red
 E03_E04,U Street/African-Amer Civil War Memorial/Cardozo,Columbia Heights,SEGMENT,4715,yellow
 D04_D05,Federal Center SW,Capitol South,SEGMENT,3052,orange
-A01_B01,Metro Center,Gallery Pl-Chinatown,SEGMENT,1505,red
+D04_D03,Federal Center SW,L'Enfant Plaza,SEGMENT,1757,orange
+E01_F01,Mt Vernon Sq 7th St-Convention Center,Gallery Pl-Chinatown,SEGMENT,2985,yellow
 K01_C05,Court House,Rosslyn,SEGMENT,5807,orange
-A11_A10,Grosvenor-Strathmore,Medical Center,SEGMENT,11821,red
+A02_A03,Farragut North,Dupont Circle,SEGMENT,2711,red
+B35_B03,NoMa-Gallaudet U,Union Station,SEGMENT,3553,red
+A11_A12,Grosvenor-Strathmore,White Flint,SEGMENT,7309,red
+N03_N02,Greensboro,Tysons Corner,SEGMENT,3945,silver
 C12_C10,Braddock Road,Ronald Reagan Washington National Airport,SEGMENT,16108,yellow
+C01_C02,Metro Center,McPherson Square,SEGMENT,2359,orange
+C12_C13,Braddock Road,King St-Old Town,SEGMENT,3453,yellow
 C10_C09,Ronald Reagan Washington National Airport,Crystal City,SEGMENT,2939,yellow
-K04_K03,Ballston-MU,Virginia Square-GMU,SEGMENT,2980,orange
+D07_D08,Potomac Ave,Stadium-Armory,SEGMENT,3750,orange
 K05_K04,East Falls Church,Ballston-MU,SEGMENT,13156,orange
 A12_A11,White Flint,Grosvenor-Strathmore,SEGMENT,7309,red
+K04_K05,Ballston-MU,East Falls Church,SEGMENT,13156,orange
+B05_B06,Brookland-CUA,Fort Totten,SEGMENT,7146,red
 K03_K02,Virginia Square-GMU,Clarendon,SEGMENT,2473,orange
-K02_K01,Clarendon,Court House,SEGMENT,2687,orange
+D06_D05,Eastern Market,Capitol South,SEGMENT,2703,orange
+D06_D07,Eastern Market,Potomac Ave,SEGMENT,3289,orange
+E02_E01,Shaw-Howard U,Mt Vernon Sq 7th St-Convention Center,SEGMENT,2527,yellow
 E02_E03,Shaw-Howard U,U Street/African-Amer Civil War Memorial/Cardozo,SEGMENT,2555,yellow
 E01_E02,Mt Vernon Sq 7th St-Convention Center,Shaw-Howard U,SEGMENT,2527,yellow
-A03_A02,Dupont Circle,Farragut North,SEGMENT,2711,red
-D08_D09,Stadium-Armory,Minnesota Ave,SEGMENT,11080,orange
-D02_D03,Smithsonian,L'Enfant Plaza,SEGMENT,2643,orange
-C01_D01,Metro Center,Federal Triangle,SEGMENT,1561,orange
+E09_E08,College Park-U of Md,Prince George's Plaza,SEGMENT,10368,green
 C09_C08,Crystal City,Pentagon City,SEGMENT,4068,yellow
-D07_D08,Potomac Ave,Stadium-Armory,SEGMENT,3750,orange
+F03_C07,L'Enfant Plaza,Pentagon,SEGMENT,12356,yellow
+D02_D01,Smithsonian,Federal Triangle,SEGMENT,2016,orange
+D02_D03,Smithsonian,L'Enfant Plaza,SEGMENT,2643,orange
+C13_J02,King St-Old Town,Van Dorn Street,SEGMENT,20246,blue
+B06_B05,Fort Totten,Brookland-CUA,SEGMENT,7146,red
+C01_D01,Metro Center,Federal Triangle,SEGMENT,1561,orange
+G05_G04,Largo Town Center,Morgan Boulevard,SEGMENT,7256,silver
 G01_G02,Benning Road,Capitol Heights,SEGMENT,7779,silver
-C05_C04,Rosslyn,Foggy Bottom-GWU,SEGMENT,6993,orange
+D03_D02,L'Enfant Plaza,Smithsonian,SEGMENT,2643,orange
 C06_C05,Arlington Cemetery,Rosslyn,SEGMENT,4936,blue
-B06_B07,Fort Totten,Takoma,SEGMENT,10026,red
+C06_C07,Arlington Cemetery,Pentagon,SEGMENT,7057,blue
+K02_K01,Clarendon,Court House,SEGMENT,2687,orange
 K08_K07,Vienna/Fairfax-GMU,Dunn Loring-Merrifield,SEGMENT,13165,orange
+C10_C12,Ronald Reagan Washington National Airport,Braddock Road,SEGMENT,16108,yellow
 J03_J02,Franconia-Springfield,Van Dorn Street,SEGMENT,18695,blue
+K01_K02,Court House,Clarendon,SEGMENT,2687,orange
 D11_D12,Cheverly,Landover,SEGMENT,9665,orange
 C14_C13,Eisenhower Avenue,King St-Old Town,SEGMENT,3734,yellow
 C07_C06,Pentagon,Arlington Cemetery,SEGMENT,7057,blue
+G03_G02,Addison Road-Seat Pleasant,Capitol Heights,SEGMENT,5215,silver
+F03_F04,L'Enfant Plaza,Waterfront,SEGMENT,4158,green
+C05_C06,Rosslyn,Arlington Cemetery,SEGMENT,4936,blue
+C14_C15,Eisenhower Avenue,Huntington,SEGMENT,2770,yellow
+D11_D10,Cheverly,Deanwood,SEGMENT,6149,orange
+C09_C10,Crystal City,Ronald Reagan Washington National Airport,SEGMENT,2939,yellow
+C07_C08,Pentagon,Pentagon City,SEGMENT,3216,yellow
 F02_F01,Archives-Navy Memorial-Penn Quarter,Gallery Pl-Chinatown,SEGMENT,1879,yellow
-N03_N02,Greensboro,Tysons Corner,SEGMENT,3945,silver
+F02_F03,Archives-Navy Memorial-Penn Quarter,L'Enfant Plaza,SEGMENT,2950,yellow
+N03_N04,Greensboro,Spring Hill,SEGMENT,4022,silver
+A05_A04,Cleveland Park,Woodley Park-Zoo/Adams Morgan,SEGMENT,3740,red
 N01_K05,McLean,East Falls Church,SEGMENT,24558,silver
+G01_D08,Benning Road,Stadium-Armory,SEGMENT,13408,silver
 A06_A05,Van Ness-UDC,Cleveland Park,SEGMENT,3320,red
+A06_A07,Van Ness-UDC,Tenleytown-AU,SEGMENT,5841,red
+K02_K03,Clarendon,Virginia Square-GMU,SEGMENT,2473,orange
 B01_B02,Gallery Pl-Chinatown,Judiciary Square,SEGMENT,1875,red
-B08_B09,Silver Spring,Forest Glen,SEGMENT,8859,red
+B10_B11,Wheaton,Glenmont,SEGMENT,9334,red
+B08_B07,Silver Spring,Takoma,SEGMENT,7483,red
+E10_E09,Greenbelt,College Park-U of Md,SEGMENT,12981,green
 A14_A13,Rockville,Twinbrook,SEGMENT,10586,red
+B35_B04,NoMa-Gallaudet U,Rhode Island Ave-Brentwood,SEGMENT,5771,red
 F03_F02,L'Enfant Plaza,Archives-Navy Memorial-Penn Quarter,SEGMENT,2950,yellow
-B04_B05,Rhode Island Ave-Brentwood,Brookland-CUA,SEGMENT,4461,red
+A14_A15,Rockville,Shady Grove,SEGMENT,14151,red
+D09_D08,Minnesota Ave,Stadium-Armory,SEGMENT,11080,orange
 F10_F09,Suitland,Naylor Road,SEGMENT,7658,green
+B09_B08,Forest Glen,Silver Spring,SEGMENT,8859,red
 K06_K05,West Falls Church-VT/UVA,East Falls Church,SEGMENT,10918,orange
+C05_C04,Rosslyn,Foggy Bottom-GWU,SEGMENT,6993,orange
 E08_E09,Prince George's Plaza,College Park-U of Md,SEGMENT,10368,green
+F05_F06,Navy Yard-Ballpark,Anacostia,SEGMENT,6254,green
 F05_F04,Navy Yard-Ballpark,Waterfront,SEGMENT,3326,green
-J02_C13,Van Dorn Street,King St-Old Town,SEGMENT,20246,blue
+A09_A10,Bethesda,Medical Center,SEGMENT,5530,red
+B04_B05,Rhode Island Ave-Brentwood,Brookland-CUA,SEGMENT,4461,red
+E08_E07,Prince George's Plaza,West Hyattsville,SEGMENT,6670,green
 N04_N03,Spring Hill,Greensboro,SEGMENT,4022,silver
+C05_K01,Rosslyn,Court House,SEGMENT,5807,orange
+N04_N06,Spring Hill,Wiehle-Reston East,SEGMENT,30858,silver
 C04_C03,Foggy Bottom-GWU,Farragut West,SEGMENT,2783,orange
+D01_C01,Federal Triangle,Metro Center,SEGMENT,1561,orange
 C02_C01,McPherson Square,Metro Center,SEGMENT,2359,orange
-F07_F06,Congress Heights,Anacostia,SEGMENT,6851,green
+C02_C03,McPherson Square,Farragut West,SEGMENT,2001,orange
 A02_A01,Farragut North,Metro Center,SEGMENT,4178,red
+B03_B02,Union Station,Judiciary Square,SEGMENT,3446,red
+E07_E06,West Hyattsville,Fort Totten,SEGMENT,10406,green
 E07_E08,West Hyattsville,Prince George's Plaza,SEGMENT,6670,green
+E03_E02,U Street/African-Amer Civil War Memorial/Cardozo,Shaw-Howard U,SEGMENT,2555,yellow
+F07_F08,Congress Heights,Southern Avenue,SEGMENT,5508,green
 N06_N04,Wiehle-Reston East,Spring Hill,SEGMENT,30858,silver
+B11_B10,Glenmont,Wheaton,SEGMENT,9334,red
 D09_D10,Minnesota Ave,Deanwood,SEGMENT,4723,orange
-A09_A08,Bethesda,Friendship Heights,SEGMENT,9095,red
+F10_F11,Suitland,Branch Ave,SEGMENT,9144,green
 B09_B10,Forest Glen,Wheaton,SEGMENT,8484,red
-A08_A07,Friendship Heights,Tenleytown-AU,SEGMENT,4135,red
-D05_D06,Capitol South,Eastern Market,SEGMENT,2703,orange
+N01_N02,McLean,Tysons Corner,SEGMENT,3454,silver
 B07_B08,Takoma,Silver Spring,SEGMENT,7483,red
+D12_D11,Landover,Cheverly,SEGMENT,9665,orange
+D05_D06,Capitol South,Eastern Market,SEGMENT,2703,orange
+D05_D04,Capitol South,Federal Center SW,SEGMENT,3052,orange
+K03_K04,Virginia Square-GMU,Ballston-MU,SEGMENT,2980,orange
+A08_A07,Friendship Heights,Tenleytown-AU,SEGMENT,4135,red

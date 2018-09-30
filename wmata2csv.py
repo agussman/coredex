@@ -137,6 +137,20 @@ def main():
                 "linecode:string": p["LineCode"],
                 "color:string": lines[p["LineCode"]]["color"]
             }
+
+            # Create the same track in the opposite direction
+            id = "%s_%s" % (p["StationCode"], prev_code)
+            #print(s)
+            segments[id] = {
+                "~id": id,
+                "~from": code_to_station[p["StationCode"]],
+                "~to": code_to_station[prev_code],
+                "~label": "SEGMENT",
+                "distance:int": p["DistanceToPrev"],
+                "linecode:string": p["LineCode"],
+                "color:string": lines[p["LineCode"]]["color"]
+            }
+
             prev_code = p["StationCode"]
 
 
