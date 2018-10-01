@@ -361,6 +361,17 @@ This will output CSV files to the `data/` directory. You can then load these wit
 $ ./csv2neptune.py -n $NEPTUNE:8182 -v data/station-nodes.csv -e data/station-edges.csv
 ```
 
+# Teardown
+
+*Note that this is unrecoverable! It will delete all the things!!!*
+
+1) Go to the CloudFormation endpoint in the AWS Console
+
+2) Select the parent stack (e.g., the one w/o "NESTED" in the Stack Name)
+
+3) From the "Actions" dropdown select "Delete Stack"
+
+4) This will _terminate_ your Neptune instance, _terminate_ the EC2 instance, VPC, and subnets.
 
 # Troubleshooting
 
