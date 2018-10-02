@@ -28,7 +28,7 @@ We're going to launch a Neptune Cluster and a small EC2 instance to connect to t
 
  1) We start by going through the tutorial to [launch a Neptune Cluster](https://docs.aws.amazon.com/neptune/latest/userguide/get-started-CreateInstance-Console.html). The wizard will create a VPC and Subnets for you, if you don't already have them.
 
- 2) The default wizard doesn't create a Security Group that allows access to the DB server. Needed to create a new security group that allows access on port 8182 and applied it to the cluster. Note that the default option is to apply it during the next maintainence window, which could potentially be a few days off, or you can just jam it now (guess which I chose?).
+ 2) The default wizard doesn't create a Security Group that allows access to the DB server. Needed to create a new security group that allows access on port 8182 and applied it to the cluster. Note that the default option is to apply it during the next maintenance window, which could potentially be a few days off, or you can just jam it now (guess which I chose?).
 
  3) Next I launched a `t2.micro` instance using an AWS Linux 2 AMI. Once it was running, I ssh'd in and installed Git and Apache (most of these steps are detailed [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html):
 
