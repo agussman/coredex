@@ -6,6 +6,9 @@ The eventual purpose of this project is to provide a basic object model for repr
 ontologically valid model along with implenentation classes in software, it is hoped that these models will form a common framework
 for tool and software development. Currently it covers getting started with AWS Neptune.
 
+Here are [slides](https://docs.google.com/presentation/d/1p1C1NOKNhbwJ3cCUqECOSXqnz-3-wlLpIjt4Ftbcc80/edit?usp=sharing) and [only marginally-awkward video](https://youtu.be/-7ukAnT51CI?t=1900) from a Meetup talk I gave that provides an overview of Graph Databases and goes through the project.
+
+
 # Setting up Neptune using the CloudFormation Stack wizard
 
 Following instructions here: https://docs.aws.amazon.com/neptune/latest/userguide/quickstart.html
