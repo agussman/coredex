@@ -100,7 +100,7 @@ def main():
     except IOError as io_err:
         err_msg = "Unable to write to file (%s). %s" % (out_file_name, io_err)
         logger.error(err_msg)
-        print err_msg
+        print(err_msg)
         exit(1)
 
     sorted_headers=["~id", "~label", "name:string", "lat:double", "lon:double", "color:string"]
@@ -162,7 +162,7 @@ def main():
     except IOError as io_err:
         err_msg = "Unable to write to file (%s). %s" % (out_file_name, io_err)
         logger.error(err_msg)
-        print err_msg
+        print(err_msg)
         exit(1)
 
     sorted_headers=["~id", "~from", "~to", "~label", "distance:int", "color:string"]
@@ -364,7 +364,7 @@ def load_cmdline_args():
     args = parser.parse_args()
 
     # Verbose flag means showing the logger output in the console
-    if args.verbose <> False:
+    if args.verbose != False:
         loggingConsoleHandler = util.colorized_console_logging.ColorizingStreamHandler()
         loggingConsoleHandler.setLevel(logging.DEBUG)
         loggingConsoleHandler.setFormatter(loggingFormatter)
